@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Hugo 0.66.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/skeleton.css">
+  <link rel="stylesheet" href="../css/custom.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="alternate" href="index.xml" type="application/rss+xml" title="Speech Research">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+  <title>Text Prompt is Not Enough: Sound Event Enhanced Prompt Adapter for Target Style Audio Generation</title>
+</head>
+
+<body rightmargin="150" leftmargin="150" topmargin="100" bottommargin="100" line-height:160%>
+  <font size="5">
+
+    <div class="container">
+
+      <header role="banner">
+
+      </header>
+      <main role="main">
+        <article itemscope itemtype="https://schema.org/BlogPosting">
+          <br></br>
+          <h1 itemprop="headline" align="center">
+            <font color="000093" size="7">Text Prompt is Not Enough: Sound Event Enhanced <br>Prompt Adapter for Target Style Audio Generation</br>
+            </font>
+          </h1>
+          <br></br>
+          <p style="line-height:1" align="center"><b>
+              <font color="061E61">Chenxu Xiong<sup>1</sup>, Ruibo Fu<sup>*2</sup>, Shuchen Shi<sup>2</sup>, Zhengqi
+                Wen<sup>3</sup>, Jianhua Tao<sup>3</sup>, Tao Wang<sup>2</sup></font>
+            </b></p>
+          <p style="line-height:1" align="center"><b>
+              <font color="061E61">Chenxing Li<sup>4</sup>, Chunyu Qiang<sup>2</sup>, Yuankun Xie<sup>2</sup>, Xin Qi<sup>2</sup>, Guanjun Li<sup>2</sup>, Zizheng Yang<sup>1</sup></font>
+            </b></p>
+          <p style="line-height:0.6" align="center">
+            <font color="061E61"><sup>1</sup>SDU-ANU Joint Science College, Shandong University, Weihai, China</font>
+          </p>
+          <p style="line-height:0.6" align="center">
+            <font color="061E61"> <sup>2</sup> Institute of Automation, Chinese Academy of Sciences, Beijing, China </font>
+          </p>
+          <p style="line-height:0.6" align="center">
+            <font color="061E61"> <sup>3</sup> Department of Automation, Tsinghua University, Beijing, China </font>
+          </p>
+          <p style="line-height:0.6" align="center">
+            <font color="061E61"> <sup>4</sup> AI Lab, Tencent, Beijing, China </font>
+          </p>
+          <p style="line-height:0.5" align="center">
+            <font color="061E61"><sup>*</sup>Corresponding author </font>
+          </p>
+          <section itemprop="entry-text">
+            <br>
+            <div class="container">
+              <center>
+                <p><a href="https://arxiv.org/abs/2409.09381">[Paper on ArXiv]</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/haoheliu/AudioLDM">[Code on GitHub]</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/haoheliu/AudioLDM">[Dataset on Kaggle]</a>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              </center>
+            </div>
+            <h2 id="abstract">
+              <font color="000093">Abstract</font>
+            </h2>
+            <p style="text-align: justify;">
+              <font color="061E61"> Current mainstream audio generation methods primarily rely on simple text prompts, often failing to capture the nuanced details necessary for multi-style audio generation. 
+                To address this limitation, the Sound Event Enhanced Prompt Adapter is proposed. Unlike traditional static global style transfer, 
+                this method extracts style embedding through cross-attention between text and reference audio for adaptive style control. Adaptive layer normalization is then utilized to enhance the model's capacity to express multiple styles. Additionally, the Sound Event Reference Style Transfer Dataset (SERST) is introduced for the proposed target style audio generation task, enabling dual-prompt audio generation using both text and audio references. 
+                Experimental results demonstrate the robustness of the model, achieving state-of-the-art Fréchet Distance of 26.94 and KL Divergence of 1.82, surpassing Tango, AudioLDM, and AudioGen. Furthermore, the generated audio shows high similarity to its corresponding audio reference.  </font>
+            </p>
+            <figure>
+              <p align="center"><img src="MainFigure.png" width="100%" class="center" /></p>
+              <figcaption>
+                <p style="text-align: justify;">
+                  <font color="061E61"><b>Figure 1:</b> SEARST Dataset and Model Architecture: In the training stage, the latent diffusion model (LDM) is conditioned on an audio embedding learned in a continuous space through a variational auto-encoder (VAE). 
+                    Text is fused with a randomly selected sound event reference through the Sound Event Enhanced Prompt Adapter to generate a style embedding. This style embedding is then utilized for adaptive layer normalization in the U-Net.
+                     In the inference stage, the LDM is conditioned on random noise instead of the audio embedding derived from the VAE.
+                </p>
+              </figcaption>
+            </figure>
+            
+
+            <!--
+<br></br>
+<h2 id="audio-samples"><font color="000093">Audio Samples</font></h2>
+<p><font color="061E61"> Our method is shown in Figure 1. The below audio samples show the comparison between Recordings, ground-truth (GT) mel + Vocoder, FastSpeech 2, DiffGAN-TTS, DiffSpeech, ProDiff, GradTTS, ResGrad-4 (Our method), and ResGrad-50 (Our method). Three samples are randomly selected from the test dataset of LJSpeech, LibriTTS, and VCTK. Details are illustrated as follows: </font></p>
+<ul style="list-style-type:square">
+-->
+            <!--
+<li><font color="061E61"> For each dataset, the same HiFi-GAN vocoder pretrained on GT mel is used for all methods. </font></li>
+-->
+            <!--<li>
+<font color="061E61"> Each generated sample has been normalized, and the raw recording is shown in Recordings. </font></li>
+-->
+            <!--<li>
+<li><font color="061E61"> Our method ResGrad uses FastSpeech 2 as the initial predictor for estimating mel-spectrogram. </font></li>
+-->
+
+
+            <br></br>
+            <h2 id="Demos">
+              <font color="000093">Demos</font>
+            </h2>
+
+            <p><b>
+                <font color="061E61"> "Water tap, faucet"</font>
+              </b></p>
+
+            <!--
+<p><em><font color="061E61">Acoustic Environment Control:</font></em></p>
+-->
+
+            <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
+              <thead>
+                <tr>
+                  <td scope="col" width="33%">
+                    <font color="061E61">Tango</font>
+                  </td>
+                  <td scope="col" width="33%">
+                    <font color="061E61">Ours</font>
+                  </td>
+                  <td scope="col" width="33%">
+                    <font color="061E61">Sound Event</font>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td scope="row"><audio controls="controls">
+                      <source src="Tango/Y_4SU3suJMvk+Water+tap+faucet.wav"
+                        autoplay />Your browser does not support the audio element.
+                    </audio></td>
+                  <td><audio controls="controls">
+                      <source
+                        src="Ours/Y_4SU3suJMvk+Water+tap+faucet.wav"
+                        autoplay />Your browser does not support the audio element.
+                    </audio></td>
+                  <td><audio controls="controls">
+                      <source src="reference/Y_4SU3suJMvk+Water+tap+faucet.wav" autoplay />
+                      Your browser does not support the audio element.
+                    </audio></td>
+
+                </tr>
+              </tbody>
+            </table>
+
+
